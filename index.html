@@ -1,53 +1,58 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth dark">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | AlexDigitalWeb - Programmatore</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script> 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#090d16',
-                        cardBg: '#111827',
-                        accentPrimary: '#6366f1',
-                        accentSecondary: '#a855f7',
-                        accentNeon: '#06b6d4',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
-                    }
-                }
-            }
-        }
-    </script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons & FontAwesome -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="description" content="Crea il tuo Curriculum Vitae professionale in pochi minuti con FASTCV99.IT. Assistente AI integrato, template multipli e download PDF.">
+    <title>FASTCV99.IT - Crea il tuo Curriculum Vitae con AI Integrata</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        ::-webkit-scrollbar {
-            width: 8px;
+        :root {
+            --neon-blue: #3b82f6;
+            --neon-cyan: #06b6d4;
+            --dark-bg: #030712;
+            --panel-bg: #111827;
         }
-        ::-webkit-scrollbar-track {
-            background: #090d16;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f2937;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #374151;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #e5e7eb;
         }
         
-        /* Animazione LED Rotante Comune */
+        .font-tech { font-family: 'JetBrains Mono', monospace; }
+        .view-hidden { display: none !important; }
+
+        /* Tech Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 4px; border: 1px solid #3b82f6; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; box-shadow: 0 0 10px #3b82f6; }
+
+        input[type="text"], input[type="email"], textarea, select {
+            text-transform: uppercase;
+        }
+
+        .neon-text { text-shadow: 0 0 10px rgba(59, 130, 246, 0.4); }
+        .neon-border { box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); border-color: rgba(59, 130, 246, 0.5); }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(59, 130, 246, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(6, 182, 212, 0.6); }
+        }
+        .btn-neon-pulse { animation: pulse-glow 3s infinite; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+
         @keyframes rotate-led {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -55,12 +60,10 @@
 
         .led-border-box {
             position: relative;
-            border-radius: 50%;
+            border-radius: 1rem;
             overflow: hidden;
-            padding: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 3px;
+            display: inline-block;
         }
 
         .led-border-box::before {
@@ -75,419 +78,815 @@
         .led-inner-content {
             position: relative;
             z-index: 1;
-            background-color: #090d16;
-            border-radius: 50%;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Animazione LED per le Card */
-        .led-card-box {
-            position: relative;
-            border-radius: 1rem;
-            overflow: hidden;
-            padding: 2px;
-            display: block;
-        }
-
-        .led-card-box::before {
-            content: '';
-            position: absolute;
-            inset: -50%;
-            background: conic-gradient(from 0deg, transparent 0%, transparent 60%, #06b6d4 80%, #3b82f6 95%, #ffffff 100%);
-            animation: rotate-led 5s linear infinite;
-            z-index: 0;
-        }
-
-        .led-card-content {
-            position: relative;
-            z-index: 1;
-            background-color: #111827;
+            background-color: #030712;
             border-radius: calc(1rem - 2px);
             overflow: hidden;
-            height: 100%;
-            width: 100%;
         }
 
-        /* Stile pulsanti di navigazione tech */
-        .nav-pill {
+        .professional-dark-bg {
+            background-color: #030712;
+            background-image: 
+                radial-gradient(circle at 50% 20%, rgba(30, 58, 138, 0.15) 0%, transparent 60%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 60px 60px, 60px 60px;
             position: relative;
-            background: rgba(17, 24, 39, 0.7);
-            border: 1px solid rgba(31, 41, 55, 0.8);
+        }
+
+        .content-z { position: relative; z-index: 10; }
+
+        .tech-input {
+            background-color: rgba(15, 23, 42, 0.8);
+            border: 1px solid #1e3a8a;
+            color: #ffffff;
             transition: all 0.3s ease;
         }
-        .nav-pill:hover {
-            background: rgba(15, 23, 42, 0.9);
-            border-color: rgba(6, 182, 212, 0.5);
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
-            transform: translateY(-1px);
+        .tech-input:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
+            outline: none;
+            background-color: rgba(15, 23, 42, 1);
+        }
+        .tech-input::placeholder { color: #475569; }
+
+        #cv-preview-container { display: flex; justify-content: center; align-items: flex-start; width: 100%; }
+        
+        #cv-preview-wrapper {
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .watermark-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 40;
+            pointer-events: none;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-around;
+            justify-content: space-around;
+            overflow: hidden;
+            opacity: 0.15;
+            transition: opacity 0.3s ease;
+        }
+
+        .watermark-text {
+            font-size: 18px;
+            font-weight: 900;
+            color: #000000;
+            transform: rotate(-35deg);
+            white-space: nowrap;
+            user-select: none;
+            margin: 30px;
+            text-transform: uppercase;
+        }
+
+        #cv-preview {
+            width: 210mm; min-height: 297mm; background: white;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(59, 130, 246, 0.3);
+            margin: 0 auto; transition: all 0.3s ease; transform-origin: top center;
+        }
+
+        /* --- OTTIMIZZAZIONE MOBILE: NASCONDE L'ANTEPRIMA DA CELLULARE E ADATTA I PULSANTI --- */
+        @media (max-width: 1023px) {
+            #builder-left { width: 100% !important; height: 100% !important; border-right: none !important; }
+            #builder-right { display: none !important; } /* Nasconde l'anteprima su mobile durante la compilazione */
+        }
+
+        @media (max-width: 1280px) and (min-width: 1024px) { #cv-preview-container { transform: scale(0.75); margin-top: -40px; margin-bottom: -80px; } }
+        @media (max-width: 1024px) and (min-width: 768px) { #cv-preview-container { transform: scale(0.60); margin-top: -70px; margin-bottom: -100px; } }
+
+        /* --- TEMI COLORI CV --- */
+        .theme-blue .cv-header { background-color: #1e3a8a; } .theme-blue .cv-header-accent { color: #60a5fa; } .theme-blue .cv-title-border { border-bottom-color: #2563eb; } .theme-blue .cv-dot { background-color: #2563eb; } .theme-blue .cv-text-accent { color: #2563eb; } .theme-blue .cv-sidebar { background-color: #0f172a; color: #ffffff; }
+        .theme-emerald .cv-header { background-color: #064e3b; } .theme-emerald .cv-header-accent { color: #34d399; } .theme-emerald .cv-title-border { border-bottom-color: #059669; } .theme-emerald .cv-dot { background-color: #059669; } .theme-emerald .cv-text-accent { color: #059669; } .theme-emerald .cv-sidebar { background-color: #022c22; color: #ffffff; }
+        .theme-purple .cv-header { background-color: #581c87; } .theme-purple .cv-header-accent { color: #c084fc; } .theme-purple .cv-title-border { border-bottom-color: #9333ea; } .theme-purple .cv-dot { background-color: #9333ea; } .theme-purple .cv-text-accent { color: #9333ea; } .theme-purple .cv-sidebar { background-color: #3b0764; color: #ffffff; }
+        .theme-amber .cv-header { background-color: #78350f; } .theme-amber .cv-header-accent { color: #fbbf24; } .theme-amber .cv-title-border { border-bottom-color: #d97706; } .theme-amber .cv-dot { background-color: #d97706; } .theme-amber .cv-text-accent { color: #d97706; } .theme-amber .cv-sidebar { background-color: #451a03; color: #ffffff; }
+        .theme-red .cv-header { background-color: #7f1d1d; } .theme-red .cv-header-accent { color: #fca5a5; } .theme-red .cv-title-border { border-bottom-color: #dc2626; } .theme-red .cv-dot { background-color: #dc2626; } .theme-red .cv-text-accent { color: #dc2626; } .theme-red .cv-sidebar { background-color: #450a0a; color: #ffffff; }
+        .theme-cyan .cv-header { background-color: #164e63; } .theme-cyan .cv-header-accent { color: #67e8f9; } .theme-cyan .cv-title-border { border-bottom-color: #0891b2; } .theme-cyan .cv-dot { background-color: #0891b2; } .theme-cyan .cv-text-accent { color: #0891b2; } .theme-cyan .cv-sidebar { background-color: #083344; color: #ffffff; }
+        .theme-pink .cv-header { background-color: #831843; } .theme-pink .cv-header-accent { color: #f472b6; } .theme-pink .cv-title-border { border-bottom-color: #db2777; } .theme-pink .cv-dot { background-color: #db2777; } .theme-pink .cv-text-accent { color: #db2777; } .theme-pink .cv-sidebar { background-color: #500724; color: #ffffff; }
+        .theme-slate .cv-header { background-color: #0f172a; } .theme-slate .cv-header-accent { color: #94a3b8; } .theme-slate .cv-title-border { border-bottom-color: #475569; } .theme-slate .cv-dot { background-color: #475569; } .theme-slate .cv-text-accent { color: #475569; } .theme-slate .cv-sidebar { background-color: #020617; color: #ffffff; }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body, html { width: 100%; height: 100%; margin: 0; padding: 0; background: white !important; }
+            body > *:not(#view-builder) { display: none !important; }
+            #view-builder > *:not(#builder-right) { display: none !important; }
+            .no-print { display: none !important; }
+            #builder-right { width: 100% !important; padding: 0 !important; margin: 0 !important; background: white !important; overflow: visible !important; display: block !important; }
+            #cv-preview-container { transform: none !important; margin: 0 !important; }
+            #cv-preview-wrapper { width: 100% !important; }
+            #cv-preview { width: 100% !important; min-height: 100vh !important; box-shadow: none !important; margin: 0 !important; padding: 0 !important; }
+            .watermark-overlay { display: none !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
     </style>
 </head>
-<body class="bg-darkBg text-gray-100 font-sans antialiased selection:bg-cyan-500 selection:text-white">
+<body class="h-screen overflow-hidden flex flex-col">
 
-    <!-- Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-darkBg/80 backdrop-blur-md border-b border-gray-800/50">
-        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2">
-            <a href="#home" class="group shrink-0">
-                <span class="text-base sm:text-2xl font-black tracking-wider uppercase bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-                    AlexDigital<span class="text-blue-500">Web</span>
-                </span>
-            </a>
-            
-            <!-- Menu Desktop -->
-            <nav class="hidden md:flex items-center space-x-3 text-xs font-mono font-bold tracking-wide">
-                <a href="#about" class="nav-pill px-4 py-2 rounded-xl text-gray-300 hover:text-cyan-400 flex items-center gap-2">
-                    <i data-lucide="user" class="w-3.5 h-3.5 text-cyan-400"></i>
-                    <span>Chi Sono</span>
-                </a>
-                <a href="#skills" class="nav-pill px-4 py-2 rounded-xl text-gray-300 hover:text-cyan-400 flex items-center gap-2">
-                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-blue-400"></i>
-                    <span>Competenze</span>
-                </a>
-                <a href="#projects" class="nav-pill px-4 py-2 rounded-xl text-gray-300 hover:text-cyan-400 flex items-center gap-2">
-                    <i data-lucide="layers" class="w-3.5 h-3.5 text-purple-400"></i>
-                    <span>Business & Servizi</span>
-                </a>
-                
-            </nav>
-
-            <!-- Icone destra (Email, Discord e Hamburger Mobile) -->
-            <div class="flex items-center space-x-2">
-                <a href="mailto:cuore73@icloud.com" aria-label="Invia Email" class="p-2 sm:p-2.5 rounded-xl bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-cyan-400 hover:border-cyan-500/55 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all flex items-center justify-center shrink-0">
-                    <i data-lucide="mail" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-                </a>
-
-                <a href="https://discord.com/users/1379183692169347336" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="p-2 sm:p-2.5 rounded-xl bg-gray-900/80 border border-gray-800 text-gray-300 hover:text-cyan-400 hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all flex items-center justify-center shrink-0">
-                    <svg class="w-5 h-5 sm:w-6 sm:h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
-                    </svg>
-                </a>
-
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-xl bg-gray-900/80 border border-gray-800 text-cyan-400 hover:text-white hover:bg-gray-800 focus:outline-none shrink-0 flex items-center justify-center">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+    <!-- VIEW 1: LANDING PAGE -->
+    <div id="view-landing" class="professional-dark-bg w-full h-full flex flex-col overflow-y-auto selection:bg-blue-500 selection:text-white scroll-smooth relative">
+        <header class="content-z p-6 flex justify-between items-center max-w-7xl w-full mx-auto">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 neon-border floating" style="animation-duration: 4s;">
+                    <i class="fa-solid fa-bolt text-2xl"></i>
+                </div>
+                <span class="text-3xl font-black tracking-tighter text-white">FASTCV<span class="text-blue-500 neon-text">99.IT</span></span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="scrollToFounder()" class="text-xs md:text-sm font-bold border border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white px-5 py-2.5 rounded-lg transition-all shadow-sm uppercase tracking-wide">
+                    FONDATORE
                 </button>
             </div>
-        </div>
+        </header>
 
-        <!-- Mobile Menu Drawer (Ora visibile e completo) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-cardBg border-b border-gray-800 px-4 pt-3 pb-6 space-y-2 font-mono text-xs shadow-2xl">
-            <a href="#about" class="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-200 hover:text-cyan-400 hover:bg-gray-800/80 transition-colors border border-gray-800">
-                <i data-lucide="user" class="w-4 h-4 text-cyan-400"></i> Chi Sono
-            </a>
-            <a href="#skills" class="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-200 hover:text-cyan-400 hover:bg-gray-800/80 transition-colors border border-gray-800">
-                <i data-lucide="cpu" class="w-4 h-4 text-blue-400"></i> Competenze
-            </a>
-            <a href="#projects" class="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-gray-200 hover:text-cyan-400 hover:bg-gray-800/80 transition-colors border border-gray-800">
-                <i data-lucide="layers" class="w-4 h-4 text-purple-400"></i> Business & Servizi
-            </a>
+        <main class="content-z flex-grow flex flex-col items-center text-center px-4 pt-12 pb-20 max-w-5xl mx-auto w-full">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 text-cyan-400 font-semibold text-xs mb-8 border border-slate-800 shadow-sm">
+                <i class="fa-solid fa-wand-magic-sparkles animate-pulse"></i> AI Intelligente • Zero registrazione • Pronto in 3 minuti
+            </div>
             
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-10 right-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-900/80 border border-gray-800 text-cyan-400 text-xs sm:text-sm font-medium mb-8 backdrop-blur-sm">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_#34d399]"></span>
-                Sistema Online & Disponibile
-            </div>
-
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6">
-                Ciao, sono <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent">AlexDigitalWeb</span>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight mb-6 max-w-4xl leading-[1.1] text-white">
+                Il tuo prossimo lavoro merita un <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-500 neon-text">CV Straordinario</span>
             </h1>
-
-            <div class="text-xl sm:text-3xl font-semibold text-gray-300 h-16 flex items-center justify-center mb-8">
-                <span>Sono un </span>
-                <span id="typing-text" class="text-cyan-400 border-b-2 border-cyan-400 ml-2 pb-1 font-mono"></span>
-            </div>
-
-            <p class="max-w-2xl mx-auto text-base sm:text-lg text-gray-400 mb-10 leading-relaxed">
-                Specializzato nello sviluppo di applicazioni web moderne, scalabili e ad alte prestazioni. Scrivo codice per trasformare idee complesse in esperienze digitali fluide.
+            
+            <p class="text-base sm:text-lg text-slate-400 mb-10 max-w-2xl font-medium leading-relaxed">
+                Crea, personalizza e scarica il tuo <strong>Curriculum Vitae professionale in PDF</strong>. Sfrutta i nostri template con <strong>Assistente AI</strong> integrato per descrizioni impeccabili.
             </p>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="mailto:cuore73@icloud.com" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-gray-300 bg-gray-900/80 border border-gray-700 hover:bg-gray-800 hover:text-white hover:border-cyan-500/50 transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="mail" class="w-5 h-5 text-cyan-400"></i>
-                    <span>Richiedi un preventivo per la tua Attività</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about" class="py-16 bg-cardBg/30 relative border-t border-gray-800/40">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Chi Sono</h2>
-                <div class="w-16 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 w-full justify-center items-center mb-20">
+                <button onclick="scrollToTemplates()" class="btn-neon-pulse w-full sm:w-auto group flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded-xl text-lg font-black transition-all transform hover:-translate-y-1 shadow-xl">
+                    Inizia a Creare il CV <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                </button>
             </div>
 
-            <div class="bg-cardBg border border-gray-800/80 rounded-2xl p-6 sm:p-8 shadow-xl flex flex-col md:flex-row items-center gap-8">
-                <div class="shrink-0">
-                    <div class="w-36 h-36 md:w-40 md:h-40 led-border-box shadow-[0_0_30px_rgba(6,182,212,0.15)]">
-                        <div class="led-inner-content">
-                            <img src="alexdigitalweb.png" alt="Alex Digital Web Profile" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity" onerror="this.src='https://placehold.co/400x400/111827/06b6d4?text=ADW'">
+            <!-- SEZIONE TEMPLATE -->
+            <div id="templates-section" class="w-full max-w-7xl mx-auto pt-16 border-t border-slate-800 text-left pb-16">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">Scegli il tuo Template Professionale</h2>
+                    <p class="text-slate-400 text-sm">Usa le frecce per visualizzare i modelli disponibili e seleziona il tuo preferito.</p>
+                </div>
+
+                <div class="flex items-center justify-center gap-4 sm:gap-8 max-w-2xl mx-auto px-4">
+                    <button onclick="prevTemplate()" class="shrink-0 w-12 h-12 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-cyan-500 hover:bg-slate-800 shadow-lg transition-all flex items-center justify-center group z-10">
+                        <i class="fa-solid fa-chevron-left text-lg"></i>
+                    </button>
+                    <div id="carousel-card-container" class="w-full max-w-[280px]"></div>
+                    <button onclick="nextTemplate()" class="shrink-0 w-12 h-12 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-cyan-500 hover:bg-slate-800 shadow-lg transition-all flex items-center justify-center group z-10">
+                        <i class="fa-solid fa-chevron-right text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full max-w-5xl mx-auto border-t border-slate-800 my-12"></div>
+
+            <!-- SEZIONE FONDATORE -->
+            <div id="founder-section" class="w-full max-w-4xl mx-auto py-10 px-6 bg-slate-900/60 border border-slate-800 rounded-2xl backdrop-blur-md shadow-xl flex flex-col md:flex-row items-center gap-8 text-left">
+                <div class="flex flex-col items-center shrink-0">
+                    <div class="led-border-box mb-3 shadow-[0_0_20px_rgba(59,130,246,0.3)]">
+                        <div class="led-inner-content w-32 h-32 flex items-center justify-center overflow-hidden">
+                            <img src="alexdigitalweb.jpg" alt="Alex Digital Web" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="w-full h-full bg-blue-950/40 text-blue-400 items-center justify-center hidden text-3xl font-black">ADW</div>
                         </div>
+                    </div>
+                    <div class="text-xl font-black tracking-tight text-center">
+                        <span class="text-white">ALEX</span><span class="text-sky-400">DIGITAL</span><span class="text-white">WEB</span>
                     </div>
                 </div>
 
-                <div class="space-y-4 text-center md:text-left">
-                    <h3 class="text-xl font-bold text-white">Programmatore Web & Sviluppatore di Soluzioni Digitali.</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed">
-                        Mi occupo di sviluppo web avanzato e amo creare architetture digitali che risolvono problemi reali. Scrivo codice pulito ed efficiente, integrando tecnologie moderne e intelligenza artificiale per trasformare idee in progetti concreti e ad alte performance.
+                <div class="flex-grow">
+                    <div class="inline-block px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 font-bold text-xs mb-3 border border-blue-500/20 uppercase tracking-widest">
+                        Chi C'è Dietro FASTCV99.IT
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-white mb-3">Innovazione e Sviluppo Web di Livello Superiore</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed font-medium mb-5">
+                        Sono un programmatore esperto e sviluppatore web specializzato nella creazione di applicazioni digitali ad alte performance e soluzioni SaaS innovative. La mia missione con <strong class="text-white">FASTCV99.IT</strong> è offrire a chi cerca lavoro uno strumento ultra-veloce, intuitivo e basato su intelligenza artificiale, progettato per semplificare la carriera professionale senza compromessi sulla qualità.
                     </p>
+                    <a href="https://alexdigitalweb.it" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wide transition-all shadow-[0_0_15px_rgba(59,130,246,0.4)] border border-blue-400">
+                        <i class="fa-solid fa-globe"></i> Visita alexdigitalweb.it <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Skills Section (Tech Stack) -->
-    <section id="skills" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Tech Stack</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full"></div>
-            </div>
+        </main>
+    </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 max-w-5xl mx-auto font-mono">
-                <!-- 1. JavaScript -->
-                <div class="led-card-box">
-                    <div class="led-card-content p-4 sm:p-6 flex flex-col items-center gap-3">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-yellow-500/10 flex items-center justify-center text-yellow-400">
-                            <i class="fa-brands fa-js text-2xl sm:text-3xl"></i>
-                        </div>
-                        <span class="text-xs sm:text-sm font-bold text-gray-200">JavaScript</span>
+    <!-- VIEW 2: CV BUILDER -->
+    <div id="view-builder" class="view-hidden w-full h-full flex flex-col lg:flex-row overflow-hidden bg-gray-950">
+        
+        <!-- LEFT COLUMN: EDITOR -->
+        <div id="builder-left" class="w-full lg:w-[45%] h-full bg-[#0a0f1c] border-r border-blue-900/30 flex flex-col z-10 no-print shadow-[10px_0_30px_rgba(0,0,0,0.8)] relative">
+            <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-500/20 to-transparent"></div>
+
+            <div class="px-4 md:px-6 py-3 bg-gray-950 border-b border-blue-900/50 text-white flex justify-between items-center shrink-0 z-20">
+                <div class="flex items-center gap-3">
+                    <button onclick="switchView('view-landing')" class="w-8 h-8 rounded bg-gray-900 border border-gray-700 hover:border-blue-500 text-gray-400 hover:text-blue-400 flex items-center justify-center transition-all">
+                        <i class="fa-solid fa-chevron-left text-sm"></i>
+                    </button>
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-blue-500 text-sm"></i>
+                        <h1 class="text-lg md:text-xl font-black tracking-tighter">FASTCV<span class="text-blue-500">99.IT</span></h1>
                     </div>
                 </div>
 
-                <!-- 2. HTML -->
-                <div class="led-card-box">
-                    <div class="led-card-content p-4 sm:p-6 flex flex-col items-center gap-3">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500">
-                            <i class="fa-brands fa-html5 text-2xl sm:text-3xl"></i>
-                        </div>
-                        <span class="text-xs sm:text-sm font-bold text-gray-200">HTML</span>
-                    </div>
-                </div>
-
-                <!-- 3. CSS -->
-                <div class="led-card-box">
-                    <div class="led-card-content p-4 sm:p-6 flex flex-col items-center gap-3">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-500">
-                            <i class="fa-brands fa-css3-alt text-2xl sm:text-3xl"></i>
-                        </div>
-                        <span class="text-xs sm:text-sm font-bold text-gray-200">CSS</span>
-                    </div>
-                </div>
-
-                <!-- 4. AI Logic -->
-                <div class="led-card-box">
-                    <div class="led-card-content p-4 sm:p-6 flex flex-col items-center gap-3">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400">
-                            <i class="fa-solid fa-brain text-2xl sm:text-3xl"></i>
-                        </div>
-                        <span class="text-xs sm:text-sm font-bold text-gray-200">AI Logic</span>
-                    </div>
-                </div>
-
-                <!-- 5. Photoshop -->
-                <div class="led-card-box col-span-2 sm:col-span-1">
-                    <div class="led-card-content p-4 sm:p-6 flex flex-col items-center gap-3">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-sky-500/10 flex items-center justify-center text-sky-400 font-bold text-base sm:text-lg">
-                            Ps
-                        </div>
-                        <span class="text-xs sm:text-sm font-bold text-gray-200">Photoshop</span>
-                    </div>
+                <!-- PULSANTE ADATTATO E OTTIMIZZATO PER MOBILE -->
+                <div id="payment-action-container">
+                    <a id="stripe-pay-btn" href="https://buy.stripe.com/3cI5kC8aUgVt530f7JdjO01" class="btn-neon-pulse flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-1.5 md:px-5 md:py-2 rounded font-bold text-xs md:text-sm transition-all border border-blue-400 no-print shadow-md">
+                        <i class="fa-solid fa-lock text-xs"></i> <span>Scarica PDF (1,99€)</span>
+                    </a>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Business & Servizi Section -->
-    <section id="projects" class="py-24 relative border-t border-gray-800/40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">I Miei Business & Servizi</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-cyan-500 to-blue-500 mx-auto rounded-full mb-4"></div>
-                <p class="text-gray-400 max-w-xl mx-auto text-sm">Dallo sviluppo di applicazioni proprietarie ad alte performance alle soluzioni web complete per le attività commerciali.</p>
-            </div>
+            <div class="p-4 md:p-6 overflow-y-auto flex-grow" id="cv-form-container">
+                <form id="cv-form" class="space-y-8">
+                    
+                    <section class="space-y-4 bg-gray-900/50 p-5 rounded-lg border border-gray-800">
+                        <h2 class="text-base font-tech text-cyan-300 pb-2 flex items-center gap-2 border-b border-gray-800 font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-palette"></i> Tema Colore
+                        </h2>
+                        <div class="flex flex-wrap gap-4 pt-2">
+                            <button type="button" onclick="setTheme('blue')" id="btn-theme-blue" class="w-8 h-8 rounded bg-blue-600 ring-2 ring-blue-400 shadow-[0_0_10px_rgba(37,99,235,0.8)] transition-all flex items-center justify-center text-white"><i class="fa-solid fa-check text-[10px]" id="icon-theme-blue"></i></button>
+                            <button type="button" onclick="setTheme('emerald')" id="btn-theme-emerald" class="w-8 h-8 rounded bg-emerald-600 ring-1 ring-gray-700 hover:ring-emerald-400 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-check text-[10px] hidden" id="icon-theme-emerald"></i></button>
+                            <button type="button" onclick="setTheme('purple')" id="btn-theme-purple" class="w-8 h-8 rounded bg-purple-600 ring-1 ring-gray-700 hover:ring-purple-400 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-check text-[10px] hidden" id="icon-theme-purple"></i></button>
+                            <button type="button" onclick="setTheme('amber')" id="btn-theme-amber" class="w-8 h-8 rounded bg-amber-600 ring-1 ring-gray-700 hover:ring-amber-400 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-check text-[10px] hidden" id="icon-theme-amber"></i></button>
+                            <button type="button" onclick="setTheme('red')" id="btn-theme-red" class="w-8 h-8 rounded bg-red-600 ring-1 ring-gray-700 hover:ring-red-400 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-check text-[10px] hidden" id="icon-theme-red"></i></button>
+                            <button type="button" onclick="setTheme('cyan')" id="btn-theme-cyan" class="w-8 h-8 rounded bg-cyan-600 ring-1 ring-gray-700 hover:ring-cyan-400 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-check text-[10px] hidden" id="icon-theme-cyan"></i></button>
+                            <button type="button" onclick="setTheme('pink')" id="btn-theme-pink" class="w-8 h-8 rounded bg-pink-600 ring-1 ring-gray-700 hover:ring-pink-400 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-check text-[10px] hidden" id="icon-theme-pink"></i></button>
+                            <button type="button" onclick="setTheme('slate')" id="btn-theme-slate" class="w-8 h-8 rounded bg-slate-700 ring-1 ring-gray-700 hover:ring-slate-400 transition-all flex items-center justify-center text-white"><i class="fa-solid fa-check text-[10px] hidden" id="icon-theme-slate"></i></button>
+                        </div>
+                    </section>
 
-            <!-- 1. Prodotto Principale: FASTCV99 -->
-            <div class="max-w-4xl mx-auto led-card-box mb-16 shadow-2xl">
-                <div class="led-card-content p-6 sm:p-10 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 px-3 sm:px-4 py-1.5 bg-blue-600/20 border-b border-l border-blue-500/40 rounded-bl-xl text-blue-400 font-mono text-[10px] sm:text-xs font-bold tracking-wider z-10">
-                        BUSINESS PRINCIPALE
-                    </div>
-
-                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-6">
-                        <div class="flex items-center gap-4">
-                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.3)] shrink-0">
-                                <i data-lucide="zap" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+                    <section class="space-y-4">
+                        <h2 class="text-base font-tech text-cyan-300 border-b border-gray-800 pb-2 flex items-center gap-2 font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-user"></i> Dati Personali
+                        </h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div><label class="block text-sm font-bold text-blue-200 mb-1 uppercase tracking-wide">Nome</label><input type="text" name="firstName" class="personal-input tech-input w-full p-2.5 rounded text-sm font-medium"></div>
+                            <div><label class="block text-sm font-bold text-blue-200 mb-1 uppercase tracking-wide">Cognome</label><input type="text" name="lastName" class="personal-input tech-input w-full p-2.5 rounded text-sm font-medium"></div>
+                            
+                            <div class="md:col-span-2">
+                                <label class="block text-sm font-bold text-blue-200 mb-1 uppercase tracking-wide">Ruolo Professionale</label>
+                                <input type="text" name="title" class="personal-input tech-input w-full p-2.5 rounded text-sm font-medium" placeholder="ES. DATA SCIENTIST, MEDICO CHIRURGO, AVVOCATO...">
                             </div>
+
+                            <div><label class="block text-sm font-bold text-blue-200 mb-1 uppercase tracking-wide">Email</label><input type="email" name="email" class="personal-input tech-input w-full p-2.5 rounded text-sm font-medium"></div>
+                            
                             <div>
-                                <h3 class="text-xl sm:text-2xl font-black text-white tracking-tight">FASTCV<span class="text-blue-500">99</span></h3>
-                                <span class="text-[11px] sm:text-xs font-mono text-cyan-400 font-semibold">Generatore di Curriculum Vitae con AI Integrata</span>
+                                <label class="block text-sm font-bold text-blue-200 mb-1 uppercase tracking-wide">Telefono</label>
+                                <div class="flex gap-2">
+                                    <select name="phonePrefix" class="personal-input tech-input w-1/3 p-2.5 rounded text-xs font-semibold cursor-pointer">
+                                        <option value="+39">IT +39</option>
+                                        <option value="+1">US +1</option>
+                                        <option value="+44">UK +44</option>
+                                    </select>
+                                    <input type="text" name="phone" class="personal-input tech-input w-2/3 p-2.5 rounded text-sm font-medium" placeholder="123 456 7890">
+                                </div>
+                            </div>
+
+                            <div><label class="block text-sm font-bold text-blue-200 mb-1 uppercase tracking-wide">Città</label><input type="text" name="city" class="personal-input tech-input w-full p-2.5 rounded text-sm font-medium"></div>
+                            <div><label class="block text-sm font-bold text-blue-200 mb-1 uppercase tracking-wide">Indirizzo</label><input type="text" name="address" class="personal-input tech-input w-full p-2.5 rounded text-sm font-medium"></div>
+                            
+                            <div class="md:col-span-2 mt-4 relative bg-gray-900/30 p-3 rounded border border-gray-800">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label class="block text-sm font-bold text-cyan-400 uppercase tracking-wide">Profilo Personale</label>
+                                    <button type="button" id="ai-gen-btn" onclick="generateProfileWithAI()" class="text-xs font-bold bg-transparent border border-cyan-500 text-cyan-400 px-3 py-1.5 rounded hover:bg-cyan-900/50 hover:text-white transition-all flex items-center gap-1.5">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i> Genera con AI
+                                    </button>
+                                </div>
+                                <textarea name="summary" id="summary-textarea" rows="4" class="personal-input tech-input w-full p-2.5 rounded text-sm font-medium resize-none" placeholder="Scrivi una breve descrizione o clicca su 'Genera con AI'..."></textarea>
                             </div>
                         </div>
-                    </div>
+                    </section>
 
-                    <p class="text-gray-300 text-xs sm:text-base leading-relaxed mb-8">
-                        Una piattaforma SaaS ultra-veloce e senza registrazione progettata per aiutare chi cerca lavoro a creare un Curriculum Vitae professionale in formato A4. Integra un assistente AI avanzato per la generazione automatica delle descrizioni, supporto multilingua (IT, EN, FR, ES, DE) e temi personalizzabili.
-                    </p>
+                    <section class="space-y-4">
+                        <h2 class="text-base font-tech text-cyan-300 border-b border-gray-800 pb-2 flex items-center gap-2 font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-briefcase"></i> Esperienze Lavorative
+                        </h2>
+                        <div id="experience-list" class="space-y-4"></div>
+                        <button type="button" id="add-exp-btn" onclick="addExperience()" class="w-full py-3 bg-gray-900/50 border border-dashed border-blue-500/50 rounded text-blue-400 hover:text-cyan-300 text-sm font-bold tracking-wide flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-solid fa-plus"></i> Aggiungi Esperienza
+                        </button>
+                    </section>
 
-                    <div class="flex flex-wrap items-center gap-4 pt-6 border-t border-gray-800">
-                        <a href="https://fastcv99.it" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-xs uppercase tracking-wider bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-lg shadow-blue-500/20">
-                                <i data-lucide="external-link" class="w-4 h-4"></i>
-                                <span>Scopri FastCV99</span>
-                        </a>
-                    </div>
-                </div>
+                    <section class="space-y-4">
+                        <h2 class="text-base font-tech text-cyan-300 border-b border-gray-800 pb-2 flex items-center gap-2 font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-graduation-cap"></i> Formazione
+                        </h2>
+                        <div id="education-list" class="space-y-4"></div>
+                        <button type="button" id="add-edu-btn" onclick="addEducation()" class="w-full py-3 bg-gray-900/50 border border-dashed border-blue-500/50 rounded text-blue-400 hover:text-cyan-300 text-sm font-bold tracking-wide flex items-center justify-center gap-2 transition-all">
+                            <i class="fa-solid fa-plus"></i> Aggiungi Formazione
+                        </button>
+                    </section>
+
+                    <section class="space-y-4 pb-12">
+                        <h2 class="text-base font-tech text-cyan-300 border-b border-gray-800 pb-2 flex items-center gap-2 font-bold uppercase tracking-wide">
+                            <i class="fa-solid fa-star"></i> Competenze (Skills)
+                        </h2>
+                        <div class="bg-gray-900/40 p-4 rounded-lg border border-gray-800 space-y-3">
+                            <label class="block text-sm font-bold text-cyan-400 uppercase tracking-wide">Aggiungi Competenza</label>
+                            <div class="flex gap-2" id="skill-input-wrapper">
+                                <input type="text" id="skill-input" class="tech-input flex-grow p-2.5 rounded text-sm font-medium" placeholder="ES: PYTHON, MARKETING..." onkeydown="if(event.key === 'Enter'){ event.preventDefault(); addSkill(); }">
+                                <button type="button" id="add-skill-btn" onclick="addSkill()" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded text-sm font-bold transition-all shadow border border-blue-400 flex items-center gap-1.5 shrink-0">
+                                    <i class="fa-solid fa-plus"></i> Aggiungi
+                                </button>
+                            </div>
+                            <div id="skills-tags-container" class="flex flex-wrap gap-2 pt-2"></div>
+                        </div>
+                    </section>
+                </form>
             </div>
-
-            <!-- 2. Categoria Servizi per Attività Locali (AlexDigitalWeb) -->
-            <div class="text-center mb-12">
-                <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">Soluzioni Web per Attività Locali</h3>
-                <p class="text-gray-400 max-w-2xl mx-auto text-sm">Realizzo siti web professionali e sistemi di prenotazione e booking online studiati per far acquisire clienti e digitalizzare qualsiasi tipo di business.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <!-- Barbieri -->
-                <div class="led-card-box">
-                    <div class="led-card-content p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-4">
-                                <i data-lucide="scissors" class="w-6 h-6"></i>
-                            </div>
-                            <h4 class="text-lg font-bold text-white mb-2">Barbieri</h4>
-                            <p class="text-gray-400 text-xs leading-relaxed">
-                                Siti web con sistema di prenotazione appuntamenti integrato per riempire la poltrona ed eliminare le attese telefoniche.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Parrucchieri -->
-                <div class="led-card-box">
-                    <div class="led-card-content p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4">
-                                <i data-lucide="sparkles" class="w-6 h-6"></i>
-                            </div>
-                            <h4 class="text-lg font-bold text-white mb-2">Parrucchieri</h4>
-                            <p class="text-gray-400 text-xs leading-relaxed">
-                                Vetrine digitali eleganti e gestionali di slot orari per saloni di bellezza orientati a un target moderno e social.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ristoranti -->
-                <div class="led-card-box">
-                    <div class="led-card-content p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 mb-4">
-                                <i data-lucide="utensils" class="w-6 h-6"></i>
-                            </div>
-                            <h4 class="text-lg font-bold text-white mb-2">Ristoranti</h4>
-                            <p class="text-gray-400 text-xs leading-relaxed">
-                                Menu digitali interattivi, prenotazione tavoli online e integrazione con le principali piattaforme di recensioni.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- E Tanto Altro -->
-                <div class="led-card-box">
-                    <div class="led-card-content p-6 flex flex-col justify-between">
-                        <div>
-                            <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-4">
-                                <i data-lucide="globe" class="w-6 h-6"></i>
-                            </div>
-                            <h4 class="text-lg font-bold text-white mb-2">E Tanto Altro</h4>
-                            <p class="text-gray-400 text-xs leading-relaxed">
-                                Soluzioni web su misura per qualsiasi tipo di attività commerciale, professionista o startup che vuole farsi trovare online.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#050810] border-t border-gray-800 py-12 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs">
-            <div class="flex items-center gap-2 text-cyan-400">
-                <i data-lucide="terminal-square" class="w-5 h-5"></i>
-                <span class="font-bold">AlexDigitalWeb</span>
-            </div>
-            <p class="text-gray-500">AlexDigitalWeb | Digitalizziamo le attività locali | Sviluppo Web • 2026</p>
         </div>
-    </footer>
 
-    <!-- JavaScript Scripts -->
+        <!-- RIGHT COLUMN: PREVIEW A4 (Nascosta su smartphone per occupare lo spazio utile) -->
+        <div id="builder-right" class="w-full lg:w-[55%] h-full bg-gray-900 overflow-y-auto p-4 md:p-8 flex justify-center relative inner-shadow tech-grid-bg">
+            
+            <div id="cv-preview-container" class="relative z-10 mt-8 mb-20">
+                
+                <div id="cv-preview-wrapper" oncontextmenu="return false;">
+                    
+                    <!-- Filigrana protettiva -->
+                    <div id="watermark-layer" class="watermark-overlay" aria-hidden="true">
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                        <div class="watermark-text">FASTCV99.IT • ANTEPRIMA PROTETTA</div>
+                    </div>
+
+                    <div id="cv-preview" class="theme-blue relative flex flex-col justify-between uppercase font-sans">
+                        
+                        <div id="empty-state-msg" class="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 text-cyan-500 no-print z-0 rounded-sm border border-cyan-900 shadow-[inset_0_0_50px_rgba(6,182,212,0.1)]">
+                            <div class="w-24 h-24 mb-6 rounded-full border border-dashed border-cyan-500/50 flex items-center justify-center animate-[spin_10s_linear_infinite]">
+                                <i class="fa-solid fa-radar text-4xl text-cyan-400 animate-pulse"></i>
+                            </div>
+                            <p class="text-sm font-bold tracking-widest uppercase">Il tuo CV prenderà forma qui</p>
+                        </div>
+
+                        <div id="cv-content" class="w-full flex-grow flex flex-col z-10 hidden bg-white"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script>
-        lucide.createIcons();
+        const templatesList = [
+            { id: 'classic', name: 'Curriculum Classico', desc: 'Intestazione superiore elegante e layout a due colonne.', img: 'blu.jpg', themeColor: 'blue', colorClass: 'bg-blue-600', textClass: 'text-blue-400', borderClass: 'hover:border-blue-500', shadowClass: 'hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]' },
+            { id: 'sidebar', name: 'Curriculum Moderno (Sidebar)', desc: 'Design contemporaneo con barra laterale scura.', img: 'blu2.jpg', themeColor: 'blue', colorClass: 'bg-indigo-600', textClass: 'text-indigo-400', borderClass: 'hover:border-indigo-500', shadowClass: 'hover:shadow-[0_0_20px_rgba(99,102,241,0.4)]' }
+        ];
 
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        let currentTpl = 0;
+        let selectedTemplateId = 'classic';
+        let isPaid = false;
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        function renderCarouselCard() {
+            const tpl = templatesList[currentTpl];
+            const container = document.getElementById('carousel-card-container');
+            container.innerHTML = `
+                <div onclick="selectTemplateAndOpen('${tpl.id}', '${tpl.themeColor}')" class="bg-slate-900/90 border border-slate-800 rounded-2xl overflow-hidden group cursor-pointer ${tpl.borderClass} transition-all duration-300 shadow-2xl ${tpl.shadowClass} flex flex-col w-full mx-auto">
+                    <div class="overflow-hidden bg-gray-950 h-[380px] relative border-b border-slate-800">
+                        <img src="${tpl.img}" alt="Template CV ${tpl.name}" class="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-all duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent flex items-end p-4">
+                            <span class="${tpl.colorClass} text-white text-[11px] font-bold px-2.5 py-1 rounded-md shadow">${tpl.name}</span>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-slate-900 shrink-0 flex justify-between items-center">
+                        <span class="${tpl.textClass} text-xs font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Crea con questo template <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
+                        <span class="text-slate-500 text-[10px] font-medium">${currentTpl + 1} / ${templatesList.length}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectTemplateAndOpen(tplId, themeColor) {
+            selectedTemplateId = tplId;
+            switchView('view-builder');
+            setTheme(themeColor);
+            updatePreview();
+        }
+
+        function prevTemplate() {
+            currentTpl = (currentTpl === 0) ? templatesList.length - 1 : currentTpl - 1;
+            renderCarouselCard();
+        }
+
+        function nextTemplate() {
+            currentTpl = (currentTpl === templatesList.length - 1) ? 0 : currentTpl + 1;
+            renderCarouselCard();
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCarouselCard();
+            loadFromLocalStorage();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true' || urlParams.get('checkout') === 'success') {
+                isPaid = true;
+                switchView('view-builder');
+                lockdownEditor();
+            }
         });
 
-        // Chiude il menu mobile automaticamente quando si clicca su una voce
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        const cvData = {
+            theme: 'blue',
+            personal: { firstName: '', lastName: '', title: '', email: '', phonePrefix: '+39', phone: '', city: '', address: '', summary: '' },
+            experience: [],
+            education: [],
+            skills: []
+        };
+
+        function scrollToTemplates() {
+            document.getElementById('templates-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToFounder() {
+            document.getElementById('founder-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function switchView(viewId) {
+            document.getElementById('view-landing').classList.add('view-hidden');
+            document.getElementById('view-builder').classList.add('view-hidden');
+            document.getElementById(viewId).classList.remove('view-hidden');
+        }
+
+        function setTheme(color) {
+            cvData.theme = color;
+            const themes = ['blue', 'emerald', 'purple', 'amber', 'red', 'cyan', 'pink', 'slate'];
+            themes.forEach(t => {
+                const btn = document.getElementById(`btn-theme-${t}`);
+                if (!btn) return;
+                const icon = document.getElementById(`icon-theme-${t}`);
+                btn.className = `w-8 h-8 rounded bg-${t === 'slate' ? 'slate-700' : t + '-600'} ring-1 ring-gray-700 hover:ring-${t === 'slate' ? 'slate' : t}-400 transition-all flex items-center justify-center text-white`;
+                if (icon) icon.classList.add('hidden');
+                if (t === color) {
+                    btn.classList.remove('ring-1', 'ring-gray-700');
+                    btn.classList.add('ring-2', `ring-${t === 'slate' ? 'slate' : t}-400`);
+                    if (icon) icon.classList.remove('hidden');
+                }
             });
+            document.getElementById('cv-preview').className = `relative flex flex-col justify-between uppercase font-sans theme-${color}`;
+            updatePreview();
+        }
+
+        const formContainer = document.getElementById('cv-form-container');
+        formContainer.addEventListener('input', (e) => {
+            if (isPaid) return;
+            const target = e.target;
+            if (target.classList.contains('personal-input')) {
+                const fieldName = target.name;
+                cvData.personal[fieldName] = target.value;
+            } else if (target.classList.contains('exp-input')) {
+                const id = parseInt(target.dataset.id);
+                const field = target.name;
+                const expIndex = cvData.experience.findIndex(item => item.id === id);
+                if (expIndex !== -1) {
+                    if (target.type === 'checkbox') {
+                        cvData.experience[expIndex][field] = target.checked;
+                        if(target.checked) cvData.experience[expIndex].endDate = '';
+                        renderExperienceForm(); 
+                    } else {
+                        cvData.experience[expIndex][field] = target.value;
+                    }
+                }
+            } else if (target.classList.contains('edu-input')) {
+                const id = parseInt(target.dataset.id);
+                const field = target.name;
+                const eduIndex = cvData.education.findIndex(item => item.id === id);
+                if (eduIndex !== -1) cvData.education[eduIndex][field] = target.value;
+            }
+            saveToLocalStorage();
+            updatePreview();
         });
 
-        const words = ["Programmatore", "Web Developer", "Problem Solver"];
-        let i = 0;
-        let timer;
-
-        function typingEffect() {
-            let word = words[i].split("");
-            let loopTyping = function() {
-                if (word.length > 0) {
-                    document.getElementById('typing-text').innerHTML += word.shift();
-                } else {
-                    setTimeout(deletingEffect, 2000);
-                    return false;
-                }
-                timer = setTimeout(loopTyping, 100);
-            };
-            loopTyping();
+        function addSkill() {
+            if (isPaid) return;
+            const input = document.getElementById('skill-input');
+            const val = input.value.trim().toUpperCase();
+            if (!val) return;
+            if (!cvData.skills.includes(val)) {
+                cvData.skills.push(val);
+                renderSkillsTags();
+                saveToLocalStorage();
+                updatePreview();
+            }
+            input.value = '';
         }
 
-        function deletingEffect() {
-            let word = words[i].split("");
-            let loopDeleting = function() {
-                if (word.length > 0) {
-                    word.pop();
-                    document.getElementById('typing-text').innerHTML = word.join("");
-                } else {
-                    if (words.length > (i + 1)) {
-                        i++;
-                    } else {
-                        i = 0;
-                    }
-                    setTimeout(typingEffect, 500);
-                    return false;
-                }
-                timer = setTimeout(loopDeleting, 50);
-            };
-            loopDeleting();
+        function removeSkill(skillToRemove) {
+            if (isPaid) return;
+            cvData.skills = cvData.skills.filter(s => s !== skillToRemove);
+            renderSkillsTags();
+            saveToLocalStorage();
+            updatePreview();
         }
 
-        typingEffect();
+        function renderSkillsTags() {
+            const container = document.getElementById('skills-tags-container');
+            container.innerHTML = cvData.skills.map(skill => `
+                <span class="inline-flex items-center gap-2 bg-blue-950/60 border border-blue-500/50 text-cyan-300 text-xs font-bold px-3 py-1.5 rounded-lg shadow">
+                    ${skill}
+                    ${!isPaid ? `<button type="button" onclick="removeSkill('${skill}')" class="text-gray-400 hover:text-red-400 transition-colors"><i class="fa-solid fa-xmark text-xs"></i></button>` : ''}
+                </span>
+            `).join('');
+        }
+
+        function saveToLocalStorage() {
+            if (!isPaid) localStorage.setItem('fastcv99_data', JSON.stringify(cvData));
+        }
+
+        function loadFromLocalStorage() {
+            const saved = localStorage.getItem('fastcv99_data');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    Object.assign(cvData, parsed);
+                    if (!Array.isArray(cvData.skills)) cvData.skills = [];
+                    document.querySelector('input[name="firstName"]').value = cvData.personal.firstName || '';
+                    document.querySelector('input[name="lastName"]').value = cvData.personal.lastName || '';
+                    document.querySelector('input[name="title"]').value = cvData.personal.title || '';
+                    document.querySelector('input[name="email"]').value = cvData.personal.email || '';
+                    document.querySelector('input[name="phone"]').value = cvData.personal.phone || '';
+                    document.querySelector('input[name="city"]').value = cvData.personal.city || '';
+                    document.querySelector('input[name="address"]').value = cvData.personal.address || '';
+                    document.querySelector('textarea[name="summary"]').value = cvData.personal.summary || '';
+                    renderSkillsTags();
+                    renderExperienceForm();
+                    renderEducationForm();
+                    updatePreview();
+                } catch(e) { console.error(e); }
+            }
+        }
+
+        function generateId() { return Date.now() + Math.floor(Math.random() * 1000); }
+
+        function addExperience() {
+            if (isPaid) return;
+            cvData.experience.push({ id: generateId(), role: '', company: '', startDate: '', endDate: '', current: false, desc: '' });
+            renderExperienceForm();
+            saveToLocalStorage();
+            updatePreview();
+        }
+
+        function removeExperience(id) {
+            if (isPaid) return;
+            cvData.experience = cvData.experience.filter(item => item.id !== id);
+            renderExperienceForm();
+            saveToLocalStorage();
+            updatePreview();
+        }
+
+        function renderExperienceForm() {
+            document.getElementById('experience-list').innerHTML = cvData.experience.map(exp => `
+                <div class="p-4 border border-gray-800 rounded bg-gray-900/60 relative">
+                    ${!isPaid ? `<button type="button" onclick="removeExperience(${exp.id})" class="absolute top-3 right-3 text-gray-600 hover:text-red-500 transition-colors"><i class="fa-solid fa-trash"></i></button>` : ''}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pr-6">
+                        <div><input type="text" placeholder="Ruolo" name="role" data-id="${exp.id}" value="${exp.role}" ${isPaid ? 'disabled' : ''} class="exp-input tech-input w-full p-2 text-xs rounded"></div>
+                        <div><input type="text" placeholder="Azienda" name="company" data-id="${exp.id}" value="${exp.company}" ${isPaid ? 'disabled' : ''} class="exp-input tech-input w-full p-2 text-xs rounded"></div>
+                        <div><input type="text" placeholder="Data Inizio" name="startDate" data-id="${exp.id}" value="${exp.startDate || ''}" ${isPaid ? 'disabled' : ''} class="exp-input tech-input w-full p-2 text-xs rounded"></div>
+                        <div class="flex flex-col gap-2">
+                            <input type="text" placeholder="Data Fine" name="endDate" data-id="${exp.id}" value="${exp.endDate || ''}" ${exp.current || isPaid ? 'disabled' : ''} class="exp-input tech-input w-full p-2 text-xs rounded disabled:opacity-30">
+                            <label class="flex items-center gap-2 cursor-pointer w-fit">
+                                <input type="checkbox" name="current" data-id="${exp.id}" ${exp.current ? 'checked' : ''} ${isPaid ? 'disabled' : ''} class="exp-input w-3.5 h-3.5 text-cyan-500 bg-gray-900 border-gray-700 rounded">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Attuale</span>
+                            </label>
+                        </div>
+                        <div class="md:col-span-2 relative mt-2 border-t border-gray-800 pt-3">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="block text-[10px] font-bold text-blue-200 uppercase tracking-widest">Descrizione</span>
+                                ${!isPaid ? `<button type="button" id="ai-exp-btn-${exp.id}" onclick="generateExperienceWithAI(${exp.id})" class="text-[10px] font-bold border border-cyan-500 text-cyan-400 px-2 py-1 rounded hover:bg-cyan-900/50 transition-all"><i class="fa-solid fa-wand-magic-sparkles"></i> AI</button>` : ''}
+                            </div>
+                            <textarea placeholder="Descrizione..." name="desc" data-id="${exp.id}" rows="3" ${isPaid ? 'disabled' : ''} class="exp-input tech-input w-full p-2 text-xs rounded resize-none">${exp.desc}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function generateExperienceWithAI(expId) {
+            if (isPaid) return;
+            const expIndex = cvData.experience.findIndex(item => item.id === expId);
+            if (expIndex === -1) return;
+            const exp = cvData.experience[expIndex];
+            const role = exp.role.trim().toUpperCase();
+            if (!role) { alert("INSERISCI PRIMA IL RUOLO"); return; }
+
+            const btn = document.getElementById(`ai-exp-btn-${expId}`);
+            if(btn) btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+            
+            setTimeout(() => {
+                const comp = exp.company ? ` PRESSO L'AZIENDA ${exp.company.toUpperCase()}` : "";
+                let variants = [
+                    `ESECUZIONE PROFESSIONALE DELLE MANSIONI INERENTI AL RUOLO DI ${role}${comp}. PIANIFICAZIONE DELLE ATTIVITÀ QUOTIDIANE E COLLABORAZIONE ATTIVA CON IL TEAM PER IL RAGGIUNGIMENTO DEI TARGET AZIENDALI.`,
+                    `GESTIONE RESPONSABILE DEI PROCESSI OPERATIVI NEL SETTORE DI COMPETENZA${comp}. RISOLUZIONE PROATTIVA DELLE CRITICITÀ E MIGLIORAMENTO CONTINUO DELL'EFFICIENZA DI REPARTO.`,
+                    `COORDINAMENTO E SVILUPPO DEI PROGETTI ASSEGNATI NELLA POSIZIONE DI ${role}${comp}. GARANZIA DI STANDARD QUALITATIVI ELEVATI E SUPPORTO ORGANIZZATIVO ALLA DIREZIONE.`
+                ];
+                const aiText = variants[Math.floor(Math.random() * variants.length)];
+                const textarea = document.querySelector(`textarea[name="desc"][data-id="${expId}"]`);
+                if (textarea) textarea.value = aiText;
+                cvData.experience[expIndex].desc = aiText;
+                saveToLocalStorage();
+                updatePreview();
+                if(btn) {
+                    btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+                    setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> AI', 1000);
+                }
+            }, 500);
+        }
+
+        function addEducation() {
+            if (isPaid) return;
+            cvData.education.push({ id: generateId(), degree: '', school: '', city: '', date: '' });
+            renderEducationForm();
+            saveToLocalStorage();
+            updatePreview();
+        }
+
+        function removeEducation(id) {
+            if (isPaid) return;
+            cvData.education = cvData.education.filter(item => item.id !== id);
+            renderEducationForm();
+            saveToLocalStorage();
+            updatePreview();
+        }
+
+        function renderEducationForm() {
+            document.getElementById('education-list').innerHTML = cvData.education.map(edu => `
+                <div class="p-4 border border-gray-800 rounded bg-gray-900/60 relative">
+                    ${!isPaid ? `<button type="button" onclick="removeEducation(${edu.id})" class="absolute top-3 right-3 text-gray-600 hover:text-red-500 transition-colors"><i class="fa-solid fa-trash"></i></button>` : ''}
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pr-6">
+                        <div class="md:col-span-2"><input type="text" placeholder="Titolo di Studio" name="degree" data-id="${edu.id}" value="${edu.degree}" ${isPaid ? 'disabled' : ''} class="edu-input tech-input w-full p-2 text-xs rounded"></div>
+                        <div><input type="text" placeholder="Scuola/Università" name="school" data-id="${edu.id}" value="${edu.school}" ${isPaid ? 'disabled' : ''} class="edu-input tech-input w-full p-2 text-xs rounded"></div>
+                        <div><input type="text" placeholder="Città" name="city" data-id="${edu.id}" value="${edu.city || ''}" ${isPaid ? 'disabled' : ''} class="edu-input tech-input w-full p-2 text-xs rounded"></div>
+                        <div class="md:col-span-2"><input type="text" placeholder="Anno" name="date" data-id="${edu.id}" value="${edu.date}" ${isPaid ? 'disabled' : ''} class="edu-input tech-input w-full p-2 text-xs rounded"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function generateProfileWithAI() {
+            if (isPaid) return;
+            const btn = document.getElementById('ai-gen-btn');
+            const textarea = document.getElementById('summary-textarea');
+            const title = cvData.personal.title ? cvData.personal.title.toUpperCase() : 'PROFESSIONISTA';
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i>';
+            
+            setTimeout(() => {
+                const profileVariants = [
+                    `${title} DINAMICO E RISOLUTIVO, CON UNA SOLIDA FORMAZIONE E ANNI DI ESPERIENZA SUL CAMPO. DOTATO DI OTTIME CAPACITÀ DI PROBLEM SOLVING E ATTITUDINE AL LAVORO IN TEAM.`,
+                    `PROFILO PROFESSIONALE ORIENTATO AI RISULTATI, SPECIALIZZATO NEL RUOLO DI ${title}. UNISCO COMPETENZE TECNICHE RIGOROSE A UNA FORTE VISIONE STRATEGICA PER MASSIMIZZARE I SUCCESSI AZIENDALI.`,
+                    `ESPERTO ${title} CON UNA SPICCATA PASSIONE PER L'INNOVAZIONE E IL MIGLIORAMENTO CONTINUO. CAPACE DI GESTIRE PROCESSI COMPLESSI IN CONTESTI ALTAMENTE COMPETITIVI.`
+                ];
+                const aiText = profileVariants[Math.floor(Math.random() * profileVariants.length)];
+                textarea.value = aiText;
+                cvData.personal.summary = aiText;
+                saveToLocalStorage();
+                updatePreview();
+                btn.innerHTML = '<i class="fa-solid fa-check"></i> FATTO';
+                setTimeout(() => btn.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Genera con AI', 1000);
+            }, 500);
+        }
+
+        function updatePreview() {
+            const isEmpty = !cvData.personal.firstName && !cvData.personal.lastName && !cvData.personal.title && 
+                            !cvData.personal.email && !cvData.personal.phone && !cvData.personal.city && 
+                            !cvData.personal.address && !cvData.personal.summary &&
+                            cvData.experience.length === 0 && cvData.education.length === 0 && cvData.skills.length === 0;
+
+            const emptyState = document.getElementById('empty-state-msg');
+            const cvContent = document.getElementById('cv-content');
+            const previewCard = document.getElementById('cv-preview');
+
+            if (isEmpty) {
+                emptyState.style.display = 'flex';
+                cvContent.style.display = 'none';
+                previewCard.classList.remove('bg-white');
+                return;
+            } else {
+                emptyState.style.display = 'none';
+                cvContent.style.display = 'flex';
+                previewCard.classList.add('bg-white');
+            }
+
+            const firstName = cvData.personal.firstName || '';
+            const lastName = cvData.personal.lastName || '';
+            const title = cvData.personal.title || '';
+            const email = cvData.personal.email || '';
+            const phone = cvData.personal.phone ? `${cvData.personal.phonePrefix || '+39'} ${cvData.personal.phone}` : '';
+            const city = cvData.personal.city || '';
+            const address = cvData.personal.address || '';
+            const summary = cvData.personal.summary || '';
+
+            const expHTML = cvData.experience.length > 0 ? cvData.experience.map(exp => {
+                let dateDisplay = exp.startDate ? exp.startDate : '';
+                if (exp.current) dateDisplay += (dateDisplay ? ' - ' : '') + 'PRESENTE';
+                else if (exp.endDate) dateDisplay += (dateDisplay ? ' - ' : '') + exp.endDate;
+
+                return `
+                <div class="relative pl-4 border-l-2 border-slate-200 mb-4">
+                    <div class="absolute w-2.5 h-2.5 cv-dot rounded-full -left-[6px] top-1.5 ring-4 ring-white transition-colors"></div>
+                    <h4 class="text-sm font-bold text-slate-900 leading-snug">${exp.role || 'RUOLO'}</h4>
+                    <div class="flex justify-between items-center text-xs font-bold cv-text-accent mt-0.5 mb-1">
+                        <span>${exp.company}</span>
+                        <span class="text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded text-[10px]">${dateDisplay}</span>
+                    </div>
+                    <p class="text-xs text-gray-700 leading-relaxed font-medium whitespace-pre-wrap">${exp.desc}</p>
+                </div>`;
+            }).join('') : '';
+
+            const eduHTML = cvData.education.length > 0 ? cvData.education.map(edu => `
+                <div class="mb-3">
+                    <h4 class="text-xs font-bold text-slate-900 leading-tight">${edu.degree || 'TITOLO'}</h4>
+                    <p class="text-xs cv-text-accent font-bold">${edu.school}${edu.city ? ' - ' + edu.city : ''}</p>
+                    <p class="text-[10px] text-slate-500 font-semibold bg-slate-50 inline-block px-1.5 py-0.5 rounded mt-0.5">${edu.date}</p>
+                </div>`).join('') : '';
+
+            const skillsHTML = cvData.skills.length > 0 ? cvData.skills.map(skill => `
+                <span class="bg-slate-100 text-slate-800 text-[10px] font-bold px-2 py-1 rounded border border-slate-200">
+                    ${skill}
+                </span>`).join('') : '';
+
+            if (selectedTemplateId === 'classic') {
+                cvContent.innerHTML = `
+                    <header class="cv-header text-white p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 transition-colors">
+                        <div>
+                            <h1 class="text-3xl font-black uppercase tracking-wider mb-1 text-white">
+                                <span class="cv-header-accent">${firstName}</span> <span>${lastName}</span>
+                            </h1>
+                            <p class="text-base text-white/90 font-medium">${title}</p>
+                        </div>
+                        <div class="flex flex-col gap-1.5 text-xs text-white/90 font-medium">
+                            ${email ? `<div class="flex items-center gap-2"><i class="fa-solid fa-envelope cv-header-accent w-4"></i> <span>${email}</span></div>` : ''}
+                            ${phone ? `<div class="flex items-center gap-2"><i class="fa-solid fa-phone cv-header-accent w-4"></i> <span>${phone}</span></div>` : ''}
+                            ${city ? `<div class="flex items-center gap-2"><i class="fa-solid fa-city cv-header-accent w-4"></i> <span>${city}</span></div>` : ''}
+                            ${address ? `<div class="flex items-center gap-2"><i class="fa-solid fa-location-dot cv-header-accent w-4"></i> <span>${address}</span></div>` : ''}
+                        </div>
+                    </header>
+                    <div class="flex-grow p-8 grid grid-cols-3 gap-8 bg-white text-slate-800">
+                        <div class="col-span-2 space-y-6">
+                            ${summary ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-2">Profilo</h3><p class="text-xs leading-relaxed text-gray-700 font-medium whitespace-pre-wrap">${summary}</p></section>` : ''}
+                            ${expHTML ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-3">Esperienza</h3><div class="space-y-4">${expHTML}</div></section>` : ''}
+                        </div>
+                        <div class="col-span-1 space-y-6">
+                            ${skillsHTML ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-2">Competenze</h3><div class="flex flex-wrap gap-1.5">${skillsHTML}</div></section>` : ''}
+                            ${eduHTML ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-3">Formazione</h3><div>${eduHTML}</div></section>` : ''}
+                        </div>
+                    </div>
+                    <div class="w-full text-center pb-4 pt-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-auto opacity-60">Generato con FASTCV99.IT</div>
+                `;
+            } else if (selectedTemplateId === 'sidebar') {
+                cvContent.innerHTML = `
+                    <div class="flex flex-grow w-full">
+                        <div class="cv-sidebar w-1/3 p-6 flex flex-col gap-6 shrink-0">
+                            <div>
+                                <h1 class="text-2xl font-black uppercase tracking-wider mb-1 text-white">
+                                    <span>${firstName}</span> <br><span class="cv-header-accent">${lastName}</span>
+                                </h1>
+                                <p class="text-xs text-white/80 font-medium mt-1">${title}</p>
+                            </div>
+                            <div class="space-y-2 text-xs text-white/90 pt-4 border-t border-white/10">
+                                <h3 class="text-xs font-black uppercase tracking-widest cv-header-accent mb-2">Contatti</h3>
+                                ${email ? `<div class="flex items-center gap-2 break-all"><i class="fa-solid fa-envelope w-4 shrink-0"></i> <span>${email}</span></div>` : ''}
+                                ${phone ? `<div class="flex items-center gap-2"><i class="fa-solid fa-phone w-4 shrink-0"></i> <span>${phone}</span></div>` : ''}
+                                ${city ? `<div class="flex items-center gap-2"><i class="fa-solid fa-city w-4 shrink-0"></i> <span>${city}</span></div>` : ''}
+                                ${address ? `<div class="flex items-center gap-2"><i class="fa-solid fa-location-dot w-4 shrink-0"></i> <span>${address}</span></div>` : ''}
+                            </div>
+                            ${skillsHTML ? `<div class="pt-4 border-t border-white/10"><h3 class="text-xs font-black uppercase tracking-widest cv-header-accent mb-2">Competenze</h3><div class="flex flex-wrap gap-1.5">${skillsHTML}</div></div>` : ''}
+                        </div>
+                        <div class="w-2/3 p-8 flex flex-col justify-between bg-white text-slate-800">
+                            <div class="space-y-6">
+                                ${summary ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-2">Profilo</h3><p class="text-xs leading-relaxed text-gray-700 font-medium whitespace-pre-wrap">${summary}</p></section>` : ''}
+                                ${expHTML ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-3">Esperienza</h3><div class="space-y-4">${expHTML}</div></section>` : ''}
+                                ${eduHTML ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-3">Formazione</h3><div>${eduHTML}</div></section>` : ''}
+                            </div>
+                            <div class="w-full text-center pt-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest opacity-60">Generato con FASTCV99.IT</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function lockdownEditor() {
+            const watermark = document.getElementById('watermark-layer');
+            if (watermark) watermark.style.display = 'none';
+
+            const inputs = document.querySelectorAll('input, textarea, select');
+            inputs.forEach(input => input.disabled = true);
+
+            const addButtons = document.querySelectorAll('#add-exp-btn, #add-edu-btn, #ai-gen-btn, #skill-input-wrapper');
+            addButtons.forEach(el => el.style.display = 'none');
+
+            const container = document.getElementById('payment-action-container');
+            container.innerHTML = `
+                <button onclick="window.print()" class="btn-neon-pulse flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-1.5 md:px-5 md:py-2 rounded font-bold text-xs md:text-sm transition-all border border-emerald-400 no-print shadow-lg">
+                    <i class="fa-solid fa-download text-xs"></i> <span>Scarica PDF Definitivo</span>
+                </button>
+            `;
+        }
     </script>
 </body>
 </html>
